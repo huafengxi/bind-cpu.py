@@ -2,14 +2,14 @@
 
 This is a single file script, copy to where you like.
 
-* irq bind
+* softIRQ bind
 show softIRQ cpu affinity in =/proc/interrupts= whose name match 'eth'
 : ./bind-cpu.py show_irq_bind eth 
 
 bind softIRQ whose name match 'eth' to cpu =0..64=
 : ./bind-cpu.py bind_irq eth spec=0..64
 
-* thread bind
+* Thread bind
 show thread cpu affinity
 : ./bind-cpu.py show_thread_bind <pid>
 
