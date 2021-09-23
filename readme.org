@@ -1,0 +1,29 @@
+#+Title: bind cpu
+
+This is a single file script, copy to where you like.
+
+* irq bind
+show softIRQ cpu affinity in =/proc/interrupts= whose name match 'eth'
+: ./bind-cpu.py show_irq_bind eth 
+
+bind softIRQ whose name match 'eth' to cpu =0..64=
+: ./bind-cpu.py bind_irq eth spec=0..64
+
+* thread bind
+show thread cpu affinity
+: ./bind-cpu.py show_thread_bind <pid>
+
+bind thread cpu affinity
+: ./bind-cpu.py bind_thread <pid> tm=tm.py
+=tm.py= example
+#+begin_src python
+  thread_type_map = [
+          ('ThreadName: worker', 'worker'),
+          ('ThreadName: epoll', 'epoll'),
+          ('ThreadName: netIO', 'epoll'),
+  ]
+  default_spec = 'worker:2,epoll:+0..16'
+#+end_src
+
+unbind
+: ./bind-cpu.py unbind_thread <pid>
